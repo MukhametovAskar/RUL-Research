@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.pyc
+.idea/
+.vscode/
+
+# LaTeX
+*.aux
+*.log
+*.out
+*.synctex.gz
+
+# OS
+.DS_Store
