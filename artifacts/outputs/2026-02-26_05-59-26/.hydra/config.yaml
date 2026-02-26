@@ -1,0 +1,24 @@
+model:
+  _target_: src.models.star_baseline.StarBaseline
+  d_model: 128
+  n_heads: 4
+  n_layers: 2
+  dropout: 0.1
+  patch_size: 8
+  seq_len: 64
+  n_sensors: 14
+  pos_learnable: true
+data:
+  dataset_name: FD001
+  data_path: ./data/FD001
+  window_size: 32
+  stride: 1
+optimizer:
+  _target_: torch.optim.Adam
+  lr: 0.0002
+  weight_decay: 0.0001
+trainer:
+  epochs: 20
+  batch_size: 32
+  device: cuda
+seed: 42

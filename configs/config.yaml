@@ -1,0 +1,12 @@
+defaults:
+  - model: star_baseline
+  - data: fd001
+  - optimizer: adam
+  - trainer: default
+  - _self_
+
+seed: 42
+
+hydra:
+  run:
+    dir: artifacts/outputs/${now:%Y-%m-%d_%H-%M-%S}

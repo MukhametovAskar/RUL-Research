@@ -1,0 +1,5 @@
+dataset_name: FD004
+data_path: ./data/FD004
+
+window_size: 64
+stride: 1

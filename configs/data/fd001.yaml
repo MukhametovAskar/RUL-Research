@@ -1,0 +1,5 @@
+dataset_name: FD001
+data_path: ./data/FD001
+
+window_size: 32
+stride: 1
