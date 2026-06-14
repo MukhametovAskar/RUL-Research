@@ -11,21 +11,47 @@ python scripts/download_data.py
 
 ## Dataset
 
-C-MAPSS dataset is **not in the repo** (too large). Download it:
+C-MAPSS dataset is **not in the repo** (too large). You can either download it or point to an existing copy.
+
+### Download automatically
 
 ```bash
 python scripts/download_data.py
 ```
 
-This places files into `data/FD001/`, `data/FD002/`, etc. Each folder must contain `train.txt`, `test.txt`, `RUL.txt`.
+### Expected structure (flat)
 
-Expected structure after download:
+All 12 files in a single folder:
+
 ```
 data/
-  FD001/train.txt, test.txt, RUL.txt
-  FD002/train.txt, test.txt, RUL.txt
-  FD003/train.txt, test.txt, RUL.txt
-  FD004/train.txt, test.txt, RUL.txt
+  train_FD001.txt
+  test_FD001.txt
+  RUL_FD001.txt
+  train_FD002.txt
+  test_FD002.txt
+  RUL_FD002.txt
+  train_FD003.txt
+  test_FD003.txt
+  RUL_FD003.txt
+  train_FD004.txt
+  test_FD004.txt
+  RUL_FD004.txt
+```
+
+### Custom data path
+
+Use `data.data_root` to point to any folder with the 12 files:
+
+```bash
+python src/train.py data=fd001 data.data_root=/path/to/dataset
+python src/train_film.py data=fd001 fd_num=1 data.data_root=/path/to/dataset
+```
+
+On **Kaggle**, add the dataset and pass its mount path:
+
+```bash
+python src/train.py data=fd001 data.data_root=/kaggle/input/cmapss
 ```
 
 ## Training
