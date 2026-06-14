@@ -298,11 +298,11 @@ def main(cfg: DictConfig):
 
         # TensorBoard engine trajectories
         for tag, eid in selected_engines.items():
-            y_true_traj, y_pred_traj = plot_engine_trajectory(
+            fig_traj = plot_engine_trajectory(
                 student, df_test, engine_rul_test, eid, cfg.data.window_size, max_rul, device, fd_num
             )
-            tb_writer.add_figure(f'Engine/{tag}_engine_{eid}', y_true_traj, epoch)
-            plt.close(y_true_traj)
+            tb_writer.add_figure(f'Engine/{tag}_engine_{eid}', fig_traj, epoch)
+            plt.close(fig_traj)
 
         # TensorBoard t-SNE (every 5 epochs + last)
         if epoch % 5 == 0 or epoch == cfg.trainer.epochs:
