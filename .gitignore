@@ -18,7 +18,7 @@ venv/
 env/
 
 # Dataset (too large for git)
-data/
+/data/
 
 # Model checkpoints
 checkpoints/
