@@ -17,3 +17,10 @@ venv/
 .venv/
 env/
 
+# Dataset (too large for git)
+data/
+
+# Model checkpoints
+checkpoints/
+best_model.pth
+

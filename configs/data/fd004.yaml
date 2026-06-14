@@ -1,5 +1,10 @@
 dataset_name: FD004
 data_path: ./data/FD004
+train_path: ./data/FD004/train.txt
+test_path: ./data/FD004/test.txt
+rul_path: ./data/FD004/RUL.txt
 
 window_size: 64
 stride: 1
+n_clusters: 6
+num_faults: 2

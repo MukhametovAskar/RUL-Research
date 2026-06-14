@@ -1,12 +1,13 @@
-_target_: src.models.star_baseline.StarBaseline
+_target_: src.models.star_baseline.STARModelFull
 
-d_model: 128
-n_heads: 4
-n_layers: 2
-dropout: 0.1
-
-patch_size: 8
-seq_len: 64
+window: 32
 n_sensors: 14
-
+d_model: 128
+nhead: 1
+num_scales: 3
+ffn_dim: 256
+patch_size: 4
+dropout: 0.25
+encoder_layers_per_scale: 4
+decoder_layers_per_scale: 2
 pos_learnable: true
