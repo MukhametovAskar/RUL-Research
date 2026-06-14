@@ -1,8 +1,8 @@
 dataset_name: FD002
 data_root: ./data
-train_path: ${data.data_root}/train_${dataset_name}.txt
-test_path: ${data.data_root}/test_${dataset_name}.txt
-rul_path: ${data.data_root}/RUL_${dataset_name}.txt
+train_path: ${data.data_root}/train_${data.dataset_name}.txt
+test_path: ${data.data_root}/test_${data.dataset_name}.txt
+rul_path: ${data.data_root}/RUL_${data.dataset_name}.txt
 
 window_size: 64
 stride: 1
