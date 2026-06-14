@@ -120,7 +120,7 @@ def plot_scatter(y_true, y_pred, epoch, fd):
     return fig
 
 
-def plot_engine_trajectory(student, df_test, engine_rul, engine_idx, window, max_rul, device):
+def plot_engine_trajectory(student, df_test, engine_rul, engine_idx, window, max_rul, device, fd):
     student.eval()
     sub = df_test[df_test['id'] == engine_idx].sort_values('cycle')
     T = len(sub)
@@ -299,7 +299,7 @@ def main(cfg: DictConfig):
         # TensorBoard engine trajectories
         for tag, eid in selected_engines.items():
             y_true_traj, y_pred_traj = plot_engine_trajectory(
-                student, df_test, engine_rul_test, eid, cfg.data.window_size, max_rul, device
+                student, df_test, engine_rul_test, eid, cfg.data.window_size, max_rul, device, fd_num
             )
             tb_writer.add_figure(f'Engine/{tag}_engine_{eid}', y_true_traj, epoch)
             plt.close(y_true_traj)
