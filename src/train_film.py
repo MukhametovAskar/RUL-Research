@@ -38,12 +38,13 @@ def get_lambda_schedule(epoch, epochs, max_lambda, min_lambda, peak_fraction=0.5
 
 
 MIN_LAMBDA = {1: 150.0, 2: 100.0, 3: 75.0, 4: 100.0}
+TOTAL_SCHEDULE_EPOCHS = 40
 
 
 def train_one_epoch(student, teacher, loader, optimizer, device, scaler, criterion, cfg, epoch):
     student.train()
     fd = cfg.fd_num
-    warmup_epochs = max(1, int(cfg.trainer.epochs * 0.75))
+    warmup_epochs = max(1, int(TOTAL_SCHEDULE_EPOCHS * 0.75))
 
     if epoch > warmup_epochs:
         teacher.eval()
@@ -54,7 +55,7 @@ def train_one_epoch(student, teacher, loader, optimizer, device, scaler, criteri
         for p in teacher.parameters():
             p.requires_grad = True
 
-    cur_lambda = get_lambda_schedule(epoch, cfg.trainer.epochs, cfg.trainer.max_lambda, MIN_LAMBDA.get(fd, 100.0))
+    cur_lambda = get_lambda_schedule(epoch, TOTAL_SCHEDULE_EPOCHS, cfg.trainer.max_lambda, MIN_LAMBDA.get(fd, 100.0))
     grad_acc = cfg.trainer.get('gradient_accumulation_steps', 2)
     optimizer.zero_grad()
 
@@ -240,7 +241,7 @@ def main(cfg: DictConfig):
         list(student.parameters()) + list(teacher.parameters()),
         lr=cfg.trainer.lr, weight_decay=cfg.trainer.weight_decay,
     )
-    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=cfg.trainer.epochs, eta_min=1e-5)
+    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=TOTAL_SCHEDULE_EPOCHS, eta_min=1e-5)
     criterion = nn.MSELoss()
     scaler = torch.amp.GradScaler('cuda', enabled=(device.type == 'cuda'))
 
