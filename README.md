@@ -4,10 +4,44 @@ Research code for Remaining Useful Life (RUL) prediction on NASA C-MAPSS turbofa
 
 ## Quick start
 
+### 1. Install dependencies
+
 ```bash
 pip install -r requirements.txt
+```
+
+### 2. Get the data
+
+**Option A: download automatically** (requires internet):
+
+```bash
 python scripts/download_data.py
 ```
+
+**Option B: use your own copy** -- pass `data_root` pointing to any folder
+that contains the 12 C-MAPSS `.txt` files:
+
+```bash
+PYTHONPATH=. python src/train.py data=fd001 data_root=/path/to/cmapss
+```
+
+### 3. Train
+
+```bash
+# Baseline (STAR)
+PYTHONPATH=. python src/train.py data=fd001
+
+# FiLM student-teacher
+PYTHONPATH=. python src/train_film.py data=fd001 fd_num=1
+```
+
+With a custom data path:
+
+```bash
+PYTHONPATH=. python src/train.py data=fd001 data_root=/path/to/cmapss
+PYTHONPATH=. python src/train_film.py data=fd001 fd_num=1 data_root=/path/to/cmapss
+```
+
 
 ## Dataset
 
