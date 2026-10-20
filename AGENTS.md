@@ -48,17 +48,22 @@ FiLM config root is `configs/config_film.yaml` (separate from baseline's `config
 
 ## Data
 
-C-MAPSS dataset files are **not in the repo**. Expected structure:
+C-MAPSS dataset files are **not in the repo**. Expected structure (flat):
 
 ```
 data/
-  FD001/
-    train.txt
-    test.txt
-    RUL.txt
-  FD002/ ...
-  FD003/ ...
-  FD004/ ...
+  train_FD001.txt
+  test_FD001.txt
+  RUL_FD001.txt
+  train_FD002.txt
+  test_FD002.txt
+  RUL_FD002.txt
+  train_FD003.txt
+  test_FD003.txt
+  RUL_FD003.txt
+  train_FD004.txt
+  test_FD004.txt
+  RUL_FD004.txt
 ```
 
 Each `configs/data/fd00X.yaml` defines paths, window_size, stride, n_clusters, and num_faults.

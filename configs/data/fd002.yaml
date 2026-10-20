@@ -1,5 +1,5 @@
-dataset_name: FD002
-data_root: ./data
+﻿dataset_name: FD002
+data_root: ${data_root}
 train_path: ${data.data_root}/train_${data.dataset_name}.txt
 test_path: ${data.data_root}/test_${data.dataset_name}.txt
 rul_path: ${data.data_root}/RUL_${data.dataset_name}.txt
